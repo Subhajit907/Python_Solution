@@ -1,0 +1,50 @@
+First Unique Character in a String
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+Example 1:
+Input: s = "leetcode"
+Output: 0
+
+Example 2:
+Input: s = "loveleetcode"
+Output: 2
+
+Example 3:
+Input: s = "aabb"
+Output: -1
+
+Constraints:
+a. 1 <= s.length <= 10^5
+b. s consists of only lowercase English letters.
+
+Solu:
+
+def firstUniqChar(s):
+    char_count = {}
+
+    # Count occurrences of each character
+    for char in s:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+
+    # Find the first non-repeating character
+    for i in range(len(s)):
+        if char_count[s[i]] == 1:
+            return i
+
+    return -1
+
+
+Now, let's test the function with the given examples:
+
+s1 = "leetcode"
+print(firstUniqChar(s1))  # Output: 0
+
+s2 = "loveleetcode"
+print(firstUniqChar(s2))  # Output: 2
+
+s3 = "aabb"
+print(firstUniqChar(s3))  # Output: -1
