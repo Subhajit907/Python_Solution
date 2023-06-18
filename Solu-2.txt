@@ -1,0 +1,49 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def addTwoNumbers(l1, l2):
+    dummy = ListNode()  # Dummy node to hold the result
+    curr = dummy  # Pointer to traverse the result list
+    carry = 0  # Variable to store the carry value
+
+    while l1 or l2 or carry:
+        sum = carry  # Initialize the sum with the carry value
+
+        # Add the corresponding values from l1 and l2
+        if l1:
+            sum += l1.val
+            l1 = l1.next
+        if l2:
+            sum += l2.val
+            l2 = l2.next
+
+        # Update the carry value and create a new node with the sum value
+        carry = sum // 10
+        curr.next = ListNode(sum % 10)
+        curr = curr.next
+
+    return dummy.next  # Return the result linked list starting from the next node of the dummy
+
+# Example usage:
+
+# Create the first linked list: l1 = [2, 4, 3]
+l1 = ListNode(2)
+l1.next = ListNode(4)
+l1.next.next = ListNode(3)
+
+# Create the second linked list: l2 = [5, 6, 4]
+l2 = ListNode(5)
+l2.next = ListNode(6)
+l2.next.next = ListNode(4)
+
+# Call the function to add the two numbers
+result = addTwoNumbers(l1, l2)
+
+# Print the result linked list
+while result:
+    print(result.val, end=" ")
+    result = result.next
+
+# Output: 7 0 8
